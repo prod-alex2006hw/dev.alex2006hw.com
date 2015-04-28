@@ -1,0 +1,10 @@
+export PATH="$HOME/.local/n/bin:$PATH"
+
+PWD=`pwd`
+PID=`ps -ef | grep node | grep "$PWD" | awk '{print $2, $3}'`
+
+for pid in $PID; do kill $pid;done
+
+npm install
+#  NODE_ENV=development forever start $PWD/app.js
+nodemon $PWD/app.js 2>&1 > ./logs/alex2006hw.log &
